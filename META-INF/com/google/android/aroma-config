@@ -1,0 +1,91 @@
+﻿# You are NOT allowed to use/modify this entry without permission
+# Copyright @ROM-PacMe
+#FluentHarry Tool
+# START
+ini_set("force_colorspace","rgba");
+ini_set("rom_name",       "FluentOS Package Update");
+ini_set("rom_version",    "1.0.17");
+ini_set("rom_author",     "ROM-PacMe");
+ini_set("rom_device",     "Galaxy J7 Prime");
+ini_set("rom_date",       "November 2018");
+splash(4000, "splash/fluent");
+theme("hades");
+fontresload( "0", "ttf/DroidSans.ttf", "12" );
+fontresload( "1", "ttf/DroidSans.ttf", "18" );
+loadlang("langs/en.lang");
+
+viewbox(
+    "Welcome!",
+    "\n\n\n\n\n\n\n\nYou are about to flash:\n\n\n"+
+    "<b><#selectbg_g>"+ini_get("rom_name")+"</#></b>\n\n"+
+    "by <b>"+ini_get("rom_author")+"</b>\n\n"+
+    "VERSION:\t <b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
+    "UPDATED:\t <b><#selectbg_g>"+ini_get("rom_date")+"</#></b>\n"+
+    "DEVICE:\t\t <b><#selectbg_g>"+ini_get("rom_device")+"</#></b>\n\n\n\n"+
+    "Press <b>Next</b> to continue the installation",
+    "@common"
+);
+
+agreebox(
+  "Terms Of Use",
+  "Please read carefully the Terms of Use Below ...",
+  "@agreement",
+  readfile_aroma("license.txt"),
+  "I Agree with this Terms Of Use...",
+  "Please check the agreement..."
+);
+
+textbox(
+"CHANGE LOG",
+"ROM CHANGE LOG",
+"@agreement",
+resread("changelog.txt")
+);
+
+
+selectbox(
+     "Device Menu",
+     "Select The Correct Device Variant [Careful]",
+     "@alert",
+     "device.prop",
+	 
+     "G610X",   "FluentOS Update for J7 Prime",	   					1
+	);
+	
+alert("Warning!!","Please make sure you Choose the <b>correcet Variant !</b>", "@info");
+ini_set("text_next", "Next");
+
+alert("REMEMBER!","I've spent so MUCH TIME to make this Update for you.", "@info");
+ini_set("text_next", "Next");
+
+ini_set("text_next", "Finish");
+
+install(
+  "Installing",
+  "Flashing <b>"+ini_get("rom_name")+"</b>...\n"+
+  "Please Wait...",
+  "@install",
+  "Done! Press <b>Finish</b> button"
+);
+
+ini_set("text_next", "Finish");
+
+viewbox(
+    "Installation was successful!",
+    "You are now running <b><#selectbg_g>"+ini_get("rom_name")+"</#></b>\n\n"+
+    "<b>Do at least one full system boot before flashing any mods.</b>\n\n"+
+    "<#selectbg_g><b>Enjoyed!</b></#>\n\n",
+    "@welcome"
+);
+
+if
+  confirm(
+      "Reboot",
+      "Reboot Now?",
+      "icons/info",
+      "Yes",
+      "No"
+  )=="yes"
+then
+  reboot("onfinish");
+endif;

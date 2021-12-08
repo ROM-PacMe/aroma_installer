@@ -1,0 +1,287 @@
+﻿### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### LANGUAGE STRING RESOURCE FILE
+#
+#   Language  : English
+#   By        : ALEXNDR / tuned by corsicanu
+#
+
+#
+#--- COMMON SYSTEM STRING RESOURCE
+#
+text_ok=OK
+text_next=Next
+text_back=Back
+text_yes=Yes
+text_no=No
+text_about=About
+text_calibrating=Calibrating Tools
+text_quit=Quit Installation
+text_quit_msg=Are you sure to quit the installer?
+
+#
+#-- CUSTOM STRING RESOURCE
+#
+common.for=for
+
+welcome.title=Welcome!
+welcome.text=You are about to install
+welcome.device=DEVICE	
+welcome.version=VERSION
+welcome.updated=UPDATED
+welcome.developer=DEVELOPER
+welcome.next=Press <b>Next</b> to Continue the Installation...
+
+terms.title=Disclaimer
+terms.desc=Please read carefully the Terms of Use
+terms.check=I agree with all above
+terms.confirm=Please check the agreement
+terms.text=\
+I am not/will not be responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. \
+Please do some research if you have any concerns about features included in this ROM before flashing it!\
+YOU are the one choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.\
+\
+\
+<b><#f00>NOTE:</#></b>\
+*Before trying to flash, make sure your device is supported in xda thread of hadesRom!!\
+\
+*Wipe Data is needed if you come from another custom ROM or AOSP\
+\
+*If you have/had stock rom installed, you most probably have data partition encrypted, so <b><#f00>rom will not boot</#></b> unless you already formatted data partition from <b>TWRP-wipe menu-"Format data" button</b>\
+
+changelog.title=Changelog
+
+devices.title=Device Options
+devices.desc=Please select your device model:
+
+csc.title=CSC
+csc.desc=Country Sale Codes
+csc.default=Default
+
+options.install=Install options
+options.note=NOTE: Choose what mods and base to be installed on your device
+options.upd=Update options
+options.mod=Select MODs
+options.csc=Select CSC
+options.wet=Samsung Weather Widget
+options.boot=Boot Sound
+options.emj=Emoji Style
+options.tch=Touch Sound
+options.key=Key Remapping Options
+options.the=Select Theme
+options.bat=Select SystemUI Mod
+options.adv=Advanced options
+options.ker=Kernel options
+options.myf=Samsung File Browser
+options.lan=Launcher Options
+options.mw=MultiWindows Mod
+options.gal=Gallery Options
+options.cscfeat=CSC Features
+options.vip=Sound Mod
+options.device=Device Support
+options.emj=Emoji Style
+
+check.item.rom.title=ROM Base
+check.item.rom.desc=Update your current ROM. Recommended!
+check.item.wipe.title=Wipe Data(recommended) 
+check.item.wipe.desc=It does not touch internal emulated sdcard
+check.item.initd.title=Init.d Support
+check.item.initd.desc=Untick if you plan to install a custom kernel
+check.item.dblt.title=Safe De-Bloat
+check.item.dblt.desc=Remove usually useless apps, available in store
+check.item.cscfeat.title=CscFeature MOD
+check.item.cscfeat.desc=Enable some hidden CSC features
+check.item.camera.title=Camera App
+check.item.camera.desc=Removes low battery limitations
+check.item.log.title=Call Log
+check.item.log.desc=Removes Messages from Call log
+check.item.anim.title=Boot Animation
+check.item.anim.desc=Install AryaMod Custom Boot Animation
+emj.title=Emoji Selection
+emj.desc=Please make your selection:
+emj1=IOS emoji
+emj2=LG emoji
+emj3=Google N Preview emoji
+emj4=S7Edge Stock emoji  
+
+kernel.title=Kernel Options
+kernel.desc=Please make your selection:
+idle=idleKernel, a leanKernel fork (6.6.2) by jcadduono
+stock=Stock Kernel from Official BOJ6 firmware
+
+lan.title=Launcher Options
+lan.desc=Please make your selection:
+lan.1=Note 3  
+lan.2=Port Note 4 Launcher
+lan.3=Note Edge
+
+device.title=Variant Support
+device.desc=Choose you device:
+int=International 
+tmo=Tmobile
+duos=9208
+kor=Korean K/S
+
+sound.title=Sound Control
+sound.desc=Choose Sound Quality Mode:
+
+wet.title=Weather Widget Options
+wet.desc=Please make your selection:
+wet.1=Note 3
+wet.2=Note 4 Weather Widget
+wet.3=S6 Weather Widget 
+
+gal.title=Gallery Option
+gal.desc=Please make your selection:
+g3=Stock Note 3 Gallery, Recommended 
+g4=Stock Note 4 Gallery, galley doesn't rotate through camera preview windows
+
+keyb.title=Keyboard Options
+keyb.desc=Please make your selection:
+keyb.1=Stock keyboard
+keyb.2=S6 Stock keyboard
+
+sman.title=Smart Manager Choices
+sman.desc=Please make your selection:
+
+snd.title=Sound Mod Option
+snd.desc=Please make your selection:
+alive=SoundAlive Stock Sound Mod
+viper=Viper for Android  
+
+touch.title=Tapping Sound Option
+touch.desc=Please make your selection:
+tch1=AOKP Touch Sound 
+tch2=S6 Touch Sound 
+tch3=Note 3 Stock Touch Sound 
+
+boot.title=Boot Sound Option
+boot.desc=Please make your selection:
+boot1=Enable Boot Sound   
+boot2=Disable Boot Sound
+
+emj.title=Emoji Selection
+emj.desc=Please make your selection:
+emj1=IOS emoji
+emj2=LG emoji
+emj3=Stock Google emoji
+emj4=Samsung Stock emoji  
+
+check.item.4g.title=4G
+check.item.4g.desc=4G would be shown as Data Type Icon
+check.item.symb.title=SubSymbol
+check.item.symb.desc=Enable Sub Symbol on Keyboard 
+check.item.bext.title=Browser Exit Menu
+check.item.bext.desc=Enable Browser Exit Menu 
+check.item.bpop.title=Browser Exit Pop-up
+check.item.bpop.desc=Enable Browser Exit Confirmation Pop-up
+check.item.bhm.title=Browser Home Button
+check.item.bhm.desc=Enable Home Button in Browser
+check.item.rec.title=Call Recording 
+check.item.rec.desc=Enable Manual Call Recording 
+check.item.callb.title=Call Button
+check.item.callb.desc=Enable Call Button in Contact List
+check.item.blk.title=Block Menu
+check.item.blk.desc=Enable Call/Message Block Menu in Settings
+check.item.strec.title=Update stock recovery
+check.item.strec.desc=May be useful for KNOX 0x0 holders
+check.item.wisdc.title=Wipe internal sdcard
+check.item.wisdc.desc=Wipe internal emulated sdcard
+
+select.item.xeo=Austria
+select.item.xeo=Poland
+select.item.ser=Russia
+select.item.pro=BELGIUM
+select.item.glb=PHILIPPINES
+select.item.mm1=SINGAPORE
+select.item.sin=SINGAPORE
+select.item.sma=PHILIPPINES
+select.item.sth=SINGAPORE
+select.item.thl=THAILAND
+select.item.xme=MALAYSIA
+select.item.xsp=SINGAPORE
+select.item.xtc=PHILIPPINES
+select.item.alb=Albania
+select.item.aut=Switzerland
+select.item.btu=United Kingdom
+select.item.cmf=Macedonia
+select.item.dbt=Germany
+select.item.itv=Italy
+select.item.xef=France
+select.item.bgl=Bulgaria
+select.item.cyo=Cyprus (Vodafone)
+select.item.ero=Bosnia and Herzegovina
+select.item.etl=Czech Republic
+select.item.eur=Greece
+select.item.met=Ireland (Meteor)
+select.item.msr=Serbia (Telenor)
+select.item.nee=Nordic Countries
+select.item.nzc=New Zealand
+select.item.ors=Slovakia
+select.item.orx=Slovakia
+select.item.phe=Spain
+select.item.phn=Netherlands
+select.item.rom=Romania
+select.item.seb=Baltic
+select.item.see=South East Europe
+select.item.sio=Slovenia
+select.item.teb=Bosnia and Herzegovina
+select.item.tem=Montenegro
+select.item.tnz=New Zealand
+select.item.top=Serbia (VIP)
+select.item.tph=Portugal (TPH)
+select.item.tra=Croatia
+select.item.tsr=Serbia (Telekom)
+select.item.two=Croatia (TELE2)
+select.item.vvt=Bulgaria (VVT)
+select.item.xeh=Hungary
+select.item.xez=Czech Republic
+select.item.xsa=Australia
+select.item.xsk=Slovakia
+select.item.bri=TAIWAN
+select.item.tgy=Hong Kong
+select.item.tmb=TMB
+select.item.xfm=South Africa
+select.item.xsi=UAE
+select.item.sth=SINGAPORE
+select.item.kcsc.title=Keep current CSC
+select.item.kcsc.desc=Automatic selection or use existing CSC content
+
+install.ready=The wizard is ready to begin installation.\
+\
+Press <b>Install</b> to begin the installation.\
+\
+If you want to review or change any of your installation settings, press <b>Back</b>. Press 3 dot menu -> <b>Quit Installation</b> to exit the wizard.
+
+install.alert_title=IMPORTANT NOTICE!!!
+install.alert=This ROM comes NO KERNEL which means that after flashing is done you need to flash a compatible custom kernel otherwise it won't boot....
+
+install.notice=The wizard is ready to begin installation.\
+\
+Press <b>Install</b> to begin the installation.\
+\
+If you want to review or change any of your installation settings, press <b>Back</b>. Press 3 dot menu -> Quit Installation to exit the wizard.
+install.start=Install
+install.text1=Please wait while installation wizard installs
+install.text2=This may take several minutes...
+install.finish=The installation wizard has successfully installed
+install.next1=Press Next to continue...
+install.next2=Next
+install.end1=Installation Completed
+install.end2=has been successfully installed into your device
+install.end3=End
+install.reboot=Reboot Device

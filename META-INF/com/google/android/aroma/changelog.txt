@@ -1,0 +1,34 @@
+FluentOS Changelog
+----------------------------------------
+
+Nov 04 2018:
+########################################
+- Liquid Smooth UI
+- Increase Recording Audio and Voice Quality Extended
+- Battery Optimizer 
+- Touch Smoothness
+- 60 FPS Enabler  (only for gaming) (this feature will not cause the device to play, it is noted that if you can play at 60FPS, this makes games like PUBG can be played with lower lag)
+- Internet Speed Extended 
+- VM and I/O Tweaker
+- Samsung Experience Launcher (from Samsung Experience 10)
+
+########################################
+
+Nov 02 2018:
+########################################
+
+- SecSettings Repatched (not need to do factory reset)
+- BadLock & some apps from Good Look added.
+- Terminal App fixed
+
+########################################
+
+Oct 30 2018:
+########################################
+
+- Based on G610MUBU3CRI5 Oreo
+- PDB-ADB Tweak Full Edition. Credits to dark_optimistic. @XDA
+- BadLock & Task Changer added.
+- Terminal added, to use with ADB Tweaks.
+
+########################################
