@@ -1,0 +1,48 @@
+FEATURES:
+
+*DEBLOATED around 70-80 apps making system lighter
+*Pre rooted ( Snap users have to restore stock boot.img in order to install GSI)
+*Floating Features Tweak
+1. Google Feed
+2. Super Fast Charging Toggle
+3. AOD Transition Animation
+4. Disabled Samsung Ads
+5. some other tweak to improve performance
+*Build Prop Tweaks
+1.Call End Delay Fixed
+2. No Performance Drop in Battery Saver ( 60 hz display though)
+3. FPS Cap Remover ( Min 60 fps and Max 120 fps set)
+4. Faster Booting Enabled
+5.Vulkan Enabled
+6. RIL wakelock optimization
+7. Audio Improvements
+*Prime Kernel Installed for optimal performance
+* Removed Boot Warning ( ONLY FOR EXYNOS)
+
+
+
+Update: 1.5.5
+
+-- Clipboard service fixed
+-- Google Photos Mod( Works Maybe)
+-- Build Prop Tweaks
+1.Multi User Added
+-- OneUI 4 Apps ( Phone,Messages,Gallery,Calender,Clock , Weather, AOD, Finder, Keyboard)
+
+Base: 1.5
+
+-- Dex Re-installed
+-- BUILD PROP TWEAKS
+1.Improve Ram Management
+2.Improve Audio and Video
+3.Faster Streaming Videos
+4.Disables Built In Error Reporting
+5.Boot & Shutdown Animation FPS Boost
+6.Better Signal
+7.Better Call Voice Quality
+8.Disables Error Checking
+9.Increase jpg quality to 100%
+10.Camera Tweaks Supports Google Camera (Not sure if it works for everyone)(But gcam opens up with less lag)
+11.Dalvik Virtual Machine Tweaks
+12.FPS Stabilizer
+13.Better Internet Speed

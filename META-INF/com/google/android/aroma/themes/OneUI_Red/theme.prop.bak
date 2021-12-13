@@ -1,0 +1,69 @@
+img.background=bg
+img.titlebar=titlebar.9
+img.navbar=navbar.9
+img.dialog=dialog.9
+img.dialog.titlebar=dialog_titlebar.9
+img.progress=button.9
+img.prograss.fill=button_press.9
+img.selection=list.9
+img.selection.push=list.9
+img.button=button.9
+img.button.focus=button_focus.9
+img.button.push=button_press.9
+img.checkbox=cb
+img.checkbox.focus=cb_focus
+img.checkbox.push=cb_press
+img.checkbox.on=cb_on
+img.checkbox.on.focus=cb_on_focus
+img.checkbox.on.push=cb_on_press
+img.radio=radio
+img.radio.focus=radio_focus
+img.radio.push=radio_press
+img.radio.on=radio_on
+img.radio.on.focus=radio_on_focus
+img.radio.on.push=radio_on_press
+
+
+color.winbg           = #000
+color.winbg_g         = #444
+color.winfg           = #aaa
+color.winfg_gray      = #666
+color.dialogbg        = #000
+color.dialogbg_g      = #444
+color.dialogfg        = #aaa
+color.textbg          = #000
+color.textfg          = #aaa
+
+#menu subcolor
+color.textfg_gray     = #666666    
+
+color.controlbg       = #000000
+color.controlbg_g     = #b00900
+color.controlfg       = #b00900
+color.selectbg        = #b00900
+color.selectbg_g      = #b00900
+color.selectbg_e      = #b00900
+color.selectfg        = #404040
+color.titlefg         = #b00900
+color.dlgtitlebg      = #b00900
+color.dlgtitlebg_g    = #aaa
+color.dlgtitlefg      = #000
+color.scrollbar       = #b00900
+color.navbg           = #000
+color.navbg_g         = #404040
+color.border          = #666
+color.border_g        = #666
+color.progressglow    = #b00900
+
+config.roundsize             = 6
+config.button_roundsize      = 8
+config.window_roundsize      = 6
+config.transition_frame      = 5
+
+font.small                   = SamsungOneUI-Regular.ttf
+font.big                     = SamsungOneUI-Regular.ttf
+
+
+info.themename        = OneUI_Red
+info.description      = OneUI_Red Theme for Ambasadii Roms
+info.author           = Giorgatzelos

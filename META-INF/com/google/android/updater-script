@@ -1,0 +1,276 @@
+ui_print(" ");
+set_progress(0.01);
+ui_print("@+++++++++++++++++++++++++++++++++++++");
+ui_print("    CleanOS 2.0  (OneUI 3.1 MOD)    ");
+ui_print("         For S20 FE Devices       ");
+ui_print("          by Srivastavayan        ");
+ui_print("@+++++++++++++++++++++++++++++++++++++");
+ui_print(" ");
+
+package_extract_dir("clean/setup", "/tmp/");
+set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+ifelse(is_mounted("/data"), unmount("/data"));
+ifelse(is_mounted("/sec_efs"), unmount("/sec_efs"));
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+ifelse(is_mounted("/product"), unmount("/product"));
+ifelse(is_mounted("/product"), unmount("/cache"));
+
+ui_print("Mounting partitions...");
+run_program("/sbin/mount", "-t", "auto", "/system_root");
+run_program("/sbin/mount", "-t", "auto", "/data");
+run_program("/sbin/mount", "-t", "auto", "/sec_efs");
+run_program("/sbin/mount", "-t", "auto", "/vendor");
+run_program("/sbin/mount", "-t", "auto", "/product");
+run_program("/sbin/mount", "-t", "auto", "/cache");
+
+ui_print("Backing Up EFS...");
+package_extract_file("clean/efs_backup.sh", "/tmp/efs_backup.sh");
+set_perm(0, 0, 0777, "/tmp/efs_backup.sh");
+run_program("/tmp/efs_backup.sh");
+delete_recursive("/tmp/efs_backup.sh");
+
+# CLEAN
+delete_recursive("/sdcard/.android_secure");
+delete_recursive("/sdcard/.bookmark_thumb1");
+delete_recursive("/sdcard/.data");
+delete_recursive("/sdcard/bugreports");
+delete_recursive("/sdcard/LOST.DIR");
+delete_recursive("/sdcard/tmp");
+delete_recursive("/external_sd/.android_secure");
+delete_recursive("/external_sd/.bookmark_thumb1");
+delete_recursive("/external_sd/.data");
+delete_recursive("/external_sd/bugreports");
+delete_recursive("/external_sd/LOST.DIR");
+
+if file_getprop("/tmp/aroma/wipe.prop","data") == "wipe" then
+    ui_print("Making Full Wipe...");
+	package_extract_file("clean/wipe.sh", "/tmp/wipe.sh");
+	set_perm(0, 0, 0777, "/tmp/wipe.sh");
+	run_program("/sbin/sh", "/tmp/wipe.sh");
+	delete_recursive("/tmp/wipe.sh");
+endif;
+
+if file_getprop("/tmp/aroma/wipe.prop","data") == "nowipe" then
+    ui_print("Making Dirty Flash...");
+	delete_recursive("/data/dalvik-cache");
+	delete_recursive("/cache");
+endif;
+
+# PRELOAD
+
+ui_print("@Cleaning Preload...");
+package_extract_file("clean/preload.sh", "/tmp/preload.sh");
+set_perm(0, 0, 0777, "/tmp/preload.sh");
+run_program("/sbin/sh", "/tmp/preload.sh");
+delete_recursive("/tmp/preload.sh");
+
+show_progress(0.70, "-70000");
+
+# SYSTEM
+
+ui_print("@Flashing System...");
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+update_zip system.img "$(find_block system)"
+
+# BASIC THINGS
+ui_print("Installing Basic Files...");
+package_extract_dir("clean/basic/system_root", "/system_root");
+
+# MODELS
+package_extract_file("clean/device_model.sh", "/tmp/device_model.sh");
+set_perm(0, 0, 0777, "/tmp/device_model.sh");
+run_program("/sbin/sh", "/tmp/device_model.sh");
+delete_recursive("/tmp/device_model.sh");
+
+ui_print("@Checking Device Model: ",file_getprop("/tmp/device_model","androidboot.em.model"),"...");
+
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+
+if file_getprop("/tmp/aroma/cleandevice.prop","SM-G780F") == "1" then
+	ui_print("Installing Important things for SM-G780F...");
+	update_zip clean/models/G780F/vendor.img "$(find_block vendor)";
+	package_extract_dir("clean/models/G780F/system_root", "/system_root");
+	package_extract_dir("clean/models/G780F/vendor", "/vendor");
+endif;
+
+if file_getprop("/tmp/aroma/cleandevice.prop","SM-G780G") == "1" then
+	ui_print("Installing Important things for SM-G780G...");
+	update_zip clean/models/G780G/vendor.img "$(find_block vendor)";
+	package_extract_dir("clean/models/G780G/system_root", "/system_root");
+	package_extract_dir("clean/models/G780G/vendor", "/vendor");
+endif;
+
+if file_getprop("/tmp/aroma/cleandevice.prop","SM-G781B") == "1" then
+	ui_print("Installing Important things for SM-G781B...");
+	update_zip clean/models/G781B/vendor.img "$(find_block vendor)";
+	package_extract_dir("clean/models/G781B/system_root", "/system_root");
+	package_extract_dir("clean/models/G781B/vendor", "/vendor");
+endif;
+
+# REMOUNT
+
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+run_program("/sbin/mount", "-t", "auto", "/system_root");
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+run_program("/sbin/mount", "-t", "auto", "/vendor");
+
+# SYSTEM BUILD.PROP
+ui_print("Enable build.prop tweaks...");
+package_extract_file("clean/mods/blsystem/bltweaks.sh", "/tmp/bltweaks.sh");
+package_extract_file("clean/mods/blsystem/misc", "/tmp/misc");
+set_perm(0, 0, 0777, "/tmp/bltweaks.sh");
+run_program("/tmp/bltweaks.sh", "misc");
+delete_recursive("/tmp/bltweaks.sh");
+delete_recursive("/tmp/misc");
+
+# FLOATING FEATURES
+ui_print("Enable floating features tweaks...");
+package_extract_file("clean/floating_rom.sh", "/tmp/floating_rom.sh");
+set_perm(0, 0, 0777, "/tmp/floating_rom.sh");
+run_program("/sbin/sh", "/tmp/floating_rom.sh");
+delete_recursive("/tmp/floating_rom.sh");
+
+# VENDOR BUILD.PROP
+package_extract_file("clean/mods/blvendor/bltweaks.sh", "/tmp/bltweaks.sh");
+package_extract_file("clean/mods/blvendor/misc", "/tmp/misc");
+set_perm(0, 0, 0777, "/tmp/bltweaks.sh");
+run_program("/tmp/bltweaks.sh", "misc");
+delete_recursive("/tmp/bltweaks.sh");
+delete_recursive("/tmp/misc");
+run_program("/tmp/BtLibraryPatcher.sh");
+
+# ADDON MODS
+ui_print("Installing Multidisabler...");
+package_extract_dir("clean/mods", "/tmp/mods");
+run_program("/sbin/busybox", "unzip", "/tmp/mods/multidisabler.zip", "META-INF/com/google/android/*", "-d", "/tmp/mods");
+run_program("/sbin/busybox", "sh", "/tmp/mods/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/mods/multidisabler.zip");
+
+#DEBLOAT
+ui_print("Debloating Samsung Apps...");
+delete_recursive("/system_root/system/app/ARCore");
+delete_recursive("/system_root/system/app/ARDrawing");
+delete_recursive("/system_root/system/app/ARZone");
+delete_recursive("/system_root/system/app/BBCAgent");
+delete_recursive("/system_root/system/app/BixbyWakeup");
+delete_recursive("/system_root/system/app/BookmarkProvider");
+delete_recursive("/system_root/system/app/CarrierDefaultApp");
+delete_recursive("/system_root/system/app/ClipboardEdge");
+delete_recursive("/system_root/system/app/CocktailQuickTool");
+delete_recursive("/system_root/system/app/DAAgent");
+delete_recursive("/system_root/system/app/DictDiotekForSec");
+delete_recursive("/system_root/system/app/EasterEgg");
+delete_recursive("/system_root/system/app/FBAppManager_NS");
+delete_recursive("/system_root/system/app/KidsHome_Installer");
+delete_recursive("/system_root/system/app/KnoxAttestationAgent");
+delete_recursive("/system_root/system/app/MinusOnePage");
+delete_recursive("/system_root/system/app/Netflix_ActivationCommon");
+delete_recursive("/system_root/system/app/Netflix_stub");
+delete_recursive("/system_root/system/app/PartnerBookmarksProvider");
+delete_recursive("/system_root/system/app/SamsungOne");
+delete_recursive("/system_root/system/app/SamsungPassAutofill_v1");
+delete_recursive("/system_root/system/app/SamsungTTS");
+delete_recursive("/system_root/system/app/SmartSwitchAgent");
+delete_recursive("/system_root/system/app/StickerCenter");
+delete_recursive("/system_root/system/app/VisionIntelligence3.7");
+delete_recursive("/system_root/system/app/WebManual");
+delete_recursive("/system_root/system/priv-app/AppsEdgePanel_v3.2");
+delete_recursive("/system_root/system/priv-app/AREmoji");
+delete_recursive("/system_root/system/priv-app/AREmojiEditor");
+delete_recursive("/system_root/system/priv-app/AvatarEmojiSticker_Palette");
+delete_recursive("/system_root/system/priv-app/Bixby");
+delete_recursive("/system_root/system/priv-app/BixbyAgentStub");
+delete_recursive("/system_root/system/priv-app/BixbyService");
+delete_recursive("/system_root/system/priv-app/BixbyVisionFramework3.5");
+delete_recursive("/system_root/system/priv-app/CIDManager");
+delete_recursive("/system_root/system/priv-app/CocktailBarService_v3.2");
+delete_recursive("/system_root/system/priv-app/ContainerAgent3");
+delete_recursive("/system_root/system/priv-app/DigitalWellbeing");
+delete_recursive("/system_root/system/priv-app/FBInstaller_NS");
+delete_recursive("/system_root/system/priv-app/FBServices");
+delete_recursive("/system_root/system/priv-app/GameHome");
+delete_recursive("/system_root/system/priv-app/GameOptimizingService");
+delete_recursive("/system_root/system/priv-app/GameTools_Dream");
+delete_recursive("/system_root/system/priv-app/GpuWatchApp");
+delete_recursive("/system_root/system/priv-app/knoxanalyticsagent");
+delete_recursive("/system_root/system/priv-app/KnoxKeyChain");
+delete_recursive("/system_root/system/priv-app/KnoxPushManager");
+delete_recursive("/system_root/system/priv-app/knowvpnproxyhandler");
+delete_recursive("/system_root/system/priv-app/LinkToWindowsService");
+delete_recursive("/system_root/system/priv-app/LiveStickers");
+delete_recursive("/system_root/system/priv-app/OMCAgent5");
+delete_recursive("/system_root/system/priv-app/OneDrive_Samsung_v3");
+delete_recursive("/system_root/system/priv-app/PeopleStripe");
+delete_recursive("/system_root/system/priv-app/SamsungBilling");
+delete_recursive("/system_root/system/priv-app/SamsungPass");
+delete_recursive("/system_root/system/priv-app/SecureFolder");
+delete_recursive("/system_root/system/priv-app/SettingsBixby");
+delete_recursive("/system_root/system/priv-app/SmartSwitchAssistant");
+delete_recursive("/system_root/system/priv-app/SmartThingsKit");
+delete_recursive("/system_root/system/priv-app/SmartTouchCall");
+delete_recursive("/system_root/system/priv-app/SOAgent");
+delete_recursive("/system_root/system/priv-app/SPPPushClient");
+delete_recursive("/system_root/system/priv-app/StickerFaceARAvatar");
+delete_recursive("/system_root/system/priv-app/SystemUIBixby2");
+delete_recursive("/system_root/system/priv-app/TaskEdgePanel_v3.2");
+delete_recursive("/system_root/system/priv-app/Upday");
+delete_recursive("/system_root/system/priv-app/UserDictionaryProvider");
+delete_recursive("/system_root/system/priv-app/YourPhone_P1_5");
+
+
+set_progress(0.83);
+
+# PERMISSION FIX AND UNMOUNTIG
+set_perm_recursive(0, 0, 0755, 0644, "/system_root/system/cameradata");
+set_perm_recursive(0, 0, 0755, 0644, "/system_root/system/app");
+set_perm_recursive(0, 0, 0755, 0644, "/system_root/system/priv-app");
+set_perm_recursive(0, 0, 0755, 0644, "/system_root/system/framework");
+package_extract_file("clean/perm.sh", "/tmp/perm.sh");
+set_perm(0, 0, 0777, "/tmp/perm.sh");
+run_program("/sbin/sh", "/tmp/perm.sh");
+delete_recursive("/tmp/perm.sh");
+
+ui_print("Unmounting partitions...");
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+ifelse(is_mounted("/data"), unmount("/data"));
+ifelse(is_mounted("/sec_efs"), unmount("/sec_efs"));
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+ifelse(is_mounted("/product"), unmount("/product"));
+
+set_progress(0.85);
+
+# KERNEL
+ui_print("@Checking Device Model: ",file_getprop("/tmp/device_model","androidboot.em.model"),"...");
+
+#Kernel Install
+if is_substring("G780F", file_getprop("/tmp/device_model", "androidboot.em.model")) then
+	update_zip clean/kernel/PrimeKernel_G7880F.img "$(find_block boot)"
+	ui_print("@Flashing PrimeKernel by @Pascua28 for SM-G780F");
+endif;
+
+if is_substring("G780G", file_getprop("/tmp/device_model", "androidboot.em.model")) then
+    update_zip clean/kernel/PrimeKernel_G780G.img "$(find_block boot)"
+	ui_print("@Flashing PrimeKernel by @Pascua28 for SM-G780G");
+endif;
+
+if is_substring("G781B", file_getprop("/tmp/device_model", "androidboot.em.model")) then
+	update_zip clean/kernel/PrimeKernel_G781B.img "$(find_block boot)"
+	ui_print("@Flashing PrimeKernel by @Pascua28 for SM-G781B");
+endif;
+
+set_progress(0.95);
+
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+
+ui_print(" ");
+ui_print(" ");
+ui_print(" ");
+ui_print("@-------------------------------");
+ui_print(" 	  Thanks for installing ! ");
+ui_print("  Enjoy the CleanOS Project!  ");
+ui_print("@-------------------------------");
+ui_print(" ");
+set_progress(1);
+
